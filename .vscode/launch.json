@@ -1,0 +1,60 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Start geth",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "envFile": "/home/john/optimism-geth-env",
+      "args": [
+        "--eth1.syncservice",
+        "--datadir=/home/john/gethData",
+        "--eth1.ctcdeploymentheight=13596466",
+        "--rollup.clienthttp=http://localhost:7878",
+        "--rollup.pollinterval=1s",
+        "--rollup.timestamprefresh=5m",
+        "--rollup.backend=l1",
+        "--rpc",
+        "--networkid=10",
+        "--rpcaddr=127.0.0.1",
+        "--rpcport=8845",
+        "--rpccorsdomain='*'",
+        "--rpcvhosts='*'",
+        "--ws",
+        "--wsaddr=127.0.0.1",
+        "--wsport=8546",
+        "--wsorigins='*'",
+        "--rpcapi=eth,rollup,net,web3,debug",
+        "--gasprice=0",
+        "--nousb",
+        "--gcmode=archive",
+        "--nodiscover",
+        "--verbosity=2",
+        "--mine",
+        "--password=/home/john/gethData/password",
+        "--allow-insecure-unlock",
+        "--unlock=0x00000398232E2064F896018496b4b44b3D62751F",
+        "--miner.etherbase=0x00000398232E2064F896018496b4b44b3D62751F",
+        "--txpool.pricelimit=0"
+      ],
+      "program": "l2geth/cmd/geth"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start DTL",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/packages/data-transport-layer/dist/src/services/run.js",
+      "envFile": "${workspaceFolder}/packages/data-transport-layer/.env",
+      "outFiles": [
+        "${workspaceFolder}/**/*.js"
+      ]
+    }
+  ]
+}
