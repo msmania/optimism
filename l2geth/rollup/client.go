@@ -575,7 +575,8 @@ func (c *Client) GetLatestTransactionBatch() (*Batch, []*types.Transaction, erro
 		Get("/batch/transaction/latest")
 
 	if err != nil {
-		return nil, nil, errors.New("Cannot get latest transaction batch")
+		fmt.Println("host=", c.client.HostURL)
+		return nil, nil, err
 	}
 	txBatch, ok := response.Result().(*TransactionBatchResponse)
 	if !ok {
