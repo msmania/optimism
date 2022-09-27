@@ -97,6 +97,7 @@ export class L1TransportServer extends BaseService<L1TransportServerOptions> {
             url: this.options.l1RpcProvider,
             user: this.options.l1RpcProviderUser,
             password: this.options.l1RpcProviderPassword,
+            allowInsecureAuthentication: true,
             headers: { 'User-Agent': 'data-transport-layer' },
           })
         : this.options.l1RpcProvider

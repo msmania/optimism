@@ -117,6 +117,7 @@ export class L1IngestionService extends BaseService<L1IngestionServiceOptions> {
         url: this.options.l1RpcProvider,
         user: this.options.l1RpcProviderUser,
         password: this.options.l1RpcProviderPassword,
+        allowInsecureAuthentication: true,
         headers: { 'User-Agent': 'data-transport-layer' },
       })
     } else {
