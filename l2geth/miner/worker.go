@@ -638,7 +638,8 @@ func (w *worker) resultLoop() {
 			}
 			// Short circuit when receiving duplicate result caused by resubmitting.
 			if w.chain.HasBlock(block.Hash(), block.NumberU64()) {
-				continue
+				log.Info("Short circuit when receiving duplicate result caused by resubmitting.")
+				// continue
 			}
 			var (
 				sealhash = w.engine.SealHash(block.Header())
