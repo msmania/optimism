@@ -20,6 +20,9 @@ export const handleEventsStateBatchAppended: EventHandlerSet<
 > = {
   getExtraData: async (event) => {
     const eventBlock = await event.getBlock()
+    if (eventBlock == null) {
+      console.log('Null eventBlock')
+    }
     const l1Transaction = await event.getTransaction()
 
     return {

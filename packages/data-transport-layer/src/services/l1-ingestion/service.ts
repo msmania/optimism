@@ -481,6 +481,7 @@ export class L1IngestionService extends BaseService<L1IngestionServiceOptions> {
 
     for (const eventRange of eventRanges) {
       // Find all relevant events within the range.
+      console.log(contractName)
       const events: TypedEvent[] = await this.state.contracts[contractName]
         .attach(eventRange.address)
         .queryFilter(
@@ -491,9 +492,17 @@ export class L1IngestionService extends BaseService<L1IngestionServiceOptions> {
 
       // Handle events, if any.
       if (events.length > 0) {
+        let counter = 0
         const tick = Date.now()
 
+        if (events.length === 31) {
+          await handlers.getExtraData(events[23], this.state.l1RpcProvider)
+        }
+
         for (const event of events) {
+          console.log(`${counter} / ${events.length}`)
+          ++counter
+
           const extraData = await handlers.getExtraData(
             event,
             this.state.l1RpcProvider
